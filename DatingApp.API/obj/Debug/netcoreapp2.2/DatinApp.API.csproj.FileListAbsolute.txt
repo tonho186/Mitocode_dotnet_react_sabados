@@ -1,0 +1,17 @@
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\appsettings.Development.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\appsettings.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\Data\UserSeedData.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\DatinApp.API.deps.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\DatinApp.API.runtimeconfig.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\DatinApp.API.runtimeconfig.dev.json
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\DatinApp.API.dll
+D:\MitoCode\ProyectoFinal\DatingApp.API\bin\Debug\netcoreapp2.2\DatinApp.API.pdb
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.csprojAssemblyReference.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.RazorAssemblyInfo.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.RazorAssemblyInfo.cs
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.AssemblyInfoInputs.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.AssemblyInfo.cs
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.RazorTargetAssemblyInfo.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.dll
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp2.2\DatinApp.API.pdb

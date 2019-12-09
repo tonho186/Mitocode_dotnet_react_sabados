@@ -1,0 +1,6 @@
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp3.0\DatinApp.API.csprojAssemblyReference.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp3.0\staticwebassets\DatinApp.API.StaticWebAssets.Manifest.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp3.0\staticwebassets\DatinApp.API.StaticWebAssets.xml
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp3.0\DatinApp.API.MvcApplicationPartsAssemblyInfo.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp3.0\DatinApp.API.AssemblyInfoInputs.cache
+D:\MitoCode\ProyectoFinal\DatingApp.API\obj\Debug\netcoreapp3.0\DatinApp.API.AssemblyInfo.cs
