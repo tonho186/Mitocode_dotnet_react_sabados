@@ -6,7 +6,7 @@ import Home from '../containers/Home/Home';
 import Members from '../containers/Members/Members';
 import Lists from '../containers/Lists/Lists';
 import ActividadEdit from '../containers/Actividades/ActividadEdit/ActividadEdit';
-import ActividadDetail from './../containers/Actividades/ActividadDetail/ActividadDetail';
+//import ActividadDetail from './../containers/Actividades/ActividadDetail/ActividadDetail';
 import MemberEdit from '../containers/Members/MemberEdit/MemberEdit';
 import MemberDetail from './../containers/Members/MemberDetail/MemberDetail';
 import auth from '../services/authService';
@@ -29,7 +29,7 @@ const Routes = ({ isAuthenticated }) => {
         <Route path='/members/:id' component={MemberDetail} />
         <Route path='/members' component={Members} />
         <Route path='/member/edit' component={MemberEdit} />
-        <Route path='/actividades/:id' component={ActividadDetail} />
+{/*         <Route path='/actividades/:id' component={ActividadDetail} /> */}
         <Route path='/actividades' component={Actividades} />
         <Route path='/actividad/edit' component={ActividadEdit} />
         <Route path='/lists' component={Lists} />

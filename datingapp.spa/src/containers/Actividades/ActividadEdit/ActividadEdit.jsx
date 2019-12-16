@@ -15,7 +15,7 @@ import * as actions from '../../../store/actions/actionsIndex';
 import ActividadCard from '../../../components/Cards/ActividadCard/ActividadCard';
 import EditActividad from './EditActividad';
 import './ActividadEdit.css';
-import PhotoEditor from './../PhotoEditor/PhotoEditor';
+//import PhotoEditor from './../PhotoEditor/PhotoEditor';
 import alertify from 'alertifyjs';
 
 class ActividadEdit extends Component {
@@ -76,7 +76,7 @@ class ActividadEdit extends Component {
       actividadCard = (
         <ActividadCard save={this.handleUpdateActividad} actividad={actividad} type={'save'} />
       );
-      editProfile = (
+      editActividad = (
         <EditActividad
           actividad={actividadInfo}
           handleSubmit={this.handleUpdateActividad}
@@ -127,7 +127,7 @@ class ActividadEdit extends Component {
                     this.toggleHandler('2');
                   }}
                 >
-                  Edit Photos
+                  Edit Details
                 </NavLink>
               </NavItem>
             </Nav>

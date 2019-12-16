@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ActividadCard.css';
 
-const actividadCard = ({ actividad, sendLike, toDetail }) => {
+const actividadCard = ({ actividad, actDelete, actEdit }) => {
   return (
     <div className='card mb-4 '>
       <div className='card-img-wrapper'>

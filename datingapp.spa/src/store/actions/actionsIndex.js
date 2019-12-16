@@ -6,5 +6,8 @@ export {
   addPhotoToUser,
   deletePhoto,
   setMainPhoto,
-  getUsers
+  getUsers,
+  getActividad,
+  updateActividad,
+  getActividades
 } from './users';

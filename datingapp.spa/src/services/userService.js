@@ -64,7 +64,7 @@ export function getActividades(page, itemsPerPage) {
     params.append('pageSize', itemsPerPage);
   }
 
-  return http.get(userUrl(userId) + '/actividades', { params });
+  return http.get('/actividades', { params });
 }
 
 export function getActividad(id) {
@@ -82,5 +82,8 @@ export default {
   deletePhoto,
   addPhoto,
   getUsers,
-  sendLike
+  sendLike,
+  getActividad,
+  updateActividad,
+  getActividades
 };

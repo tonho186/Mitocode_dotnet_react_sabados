@@ -259,3 +259,124 @@ export const getUsers = (page, itemsPerPage, userParams, likesParam) => {
     }
   };
 };
+
+export const fetchActividadInit = () => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDAD_INIT
+  };
+};
+
+export const fetchActividadStart = () => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDAD_START
+  };
+};
+
+export const fetchActividadSuccess = actividad => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDAD_SUCCESS,
+    actividad: actividad
+  };
+};
+
+export const fetchActividadFail = error => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDAD_FAIL,
+    error: error
+  };
+};
+
+export const updateActividadStart = () => {
+  return {
+    type: actionTypes.UPDATE_ACTIVIDAD_START
+  };
+};
+
+export const updateActividadSuccess = actividad => {
+  return {
+    type: actionTypes.UPDATE_ACTIVIDAD_SUCCESS,
+    actividad: actividad
+  };
+};
+
+export const updateActividadFail = error => {
+  return {
+    type: actionTypes.UPDATE_ACTIVIDAD_FAIL,
+    error: error
+  };
+};
+
+export const fetchActividadesInit = () => {
+  return { type: actionTypes.FETCH_ACTIVIDADES_INIT };
+};
+
+export const fetchActividadesStart = () => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDADES_START
+  };
+};
+
+export const fetchActividadesSuccess = (actividades, pagination) => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDADES_SUCCESS,
+    actividades: actividades,
+    pagination: pagination
+  };
+};
+
+export const fetchActividadesFail = error => {
+  return {
+    type: actionTypes.FETCH_ACTIVIDADES_FAIL,
+    error: error
+  };
+};
+
+export const getActividad = id => {
+  return async dispatch => {
+    dispatch(fetchActividadInit());
+    dispatch(fetchActividadStart());
+    try {
+      const actividad = await userService.getActividad(id);
+      dispatch(fetchActividadSuccess(actividad.data));
+    } catch (error) {
+      dispatch(fetchActividadFail(error));
+      alertify.error(error.response.statusText);
+    }
+  };
+};
+
+export const updateActividad = (id, actividad) => {
+  return async dispatch => {
+    dispatch(updateActividadStart());
+    try {
+      await userService.updateActividad(id, actividad);
+      dispatch(updateActividadSuccess(actividad));
+    } catch (error) {
+      if (error) {
+        if (error.response.data) {
+          dispatch(updateActividadFail(error.response.data));
+        }
+      }
+    }
+  };
+};
+
+export const getActividades = (page, itemsPerPage, userParams, likesParam) => {
+  return async dispatch => {
+    dispatch(fetchActividadesInit());
+    dispatch(fetchActividadStart());
+    try {
+      const response = await userService.getActividades(
+        page,
+        itemsPerPage,
+        userParams,
+        likesParam
+      );
+      const actividades = response.data;
+      const pagination = JSON.parse(response.headers.pagination);
+      dispatch(fetchActividadesSuccess(actividades, pagination));
+    } catch (error) {
+      dispatch(fetchActividadesFail(error));
+    }
+  };
+};
