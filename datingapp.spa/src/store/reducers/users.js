@@ -94,6 +94,12 @@ const reducer = (state = initialState, action) => {
       return fetchUsersSuccess(state, action);
     case actionTypes.FETCH_USERS_FAIL:
       return fetchUsersFail(state, action);
+    case actionTypes.DELETE_USER_ACTIVIDAD_START:
+      return userProcessStart(state, action);
+    case actionTypes.DELETE_USER_ACTIVIDAD_SUCCESS:
+      return userProcessSuccess(state, action);
+    case actionTypes.DELETE_USER_ACTIVIDAD_FAIL:
+      return userProcessFail(state, action);
     default:
       return state;
   }

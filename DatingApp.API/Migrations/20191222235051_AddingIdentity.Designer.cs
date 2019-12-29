@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatinApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191201083229_AddingIdentity")]
+    [Migration("20191222235051_AddingIdentity")]
     partial class AddingIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

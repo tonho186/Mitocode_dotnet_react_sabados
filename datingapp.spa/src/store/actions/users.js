@@ -331,12 +331,32 @@ export const fetchActividadesFail = error => {
   };
 };
 
-export const getActividad = id => {
+export const deleteUserActividadStart = () => {
+  return {
+    type: actionTypes.DELETE_USER_ACTIVIDAD_START
+  };
+};
+
+export const deleteUserActividadSuccess = user => {
+  return {
+    type: actionTypes.DELETE_USER_ACTIVIDAD_SUCCESS,
+    user: user
+  };
+};
+
+export const deleteUserActividadFail = error => {
+  return {
+    type: actionTypes.DELETE_USER_ACTIVIDAD_FAIL,
+    error: error
+  };
+};
+
+export const getActividad = (userId, id) => {
   return async dispatch => {
     dispatch(fetchActividadInit());
     dispatch(fetchActividadStart());
     try {
-      const actividad = await userService.getActividad(id);
+      const actividad = await userService.getActividad(userId, id);
       dispatch(fetchActividadSuccess(actividad.data));
     } catch (error) {
       dispatch(fetchActividadFail(error));
@@ -345,11 +365,11 @@ export const getActividad = id => {
   };
 };
 
-export const updateActividad = (id, actividad) => {
+export const updateActividad = (userId, id, actividad) => {
   return async dispatch => {
     dispatch(updateActividadStart());
     try {
-      await userService.updateActividad(id, actividad);
+      await userService.updateActividad(userId, id, actividad);
       dispatch(updateActividadSuccess(actividad));
     } catch (error) {
       if (error) {
@@ -361,22 +381,39 @@ export const updateActividad = (id, actividad) => {
   };
 };
 
-export const getActividades = (page, itemsPerPage, userParams, likesParam) => {
+export const getActividades = (userId, page, itemsPerPage) => {
   return async dispatch => {
     dispatch(fetchActividadesInit());
     dispatch(fetchActividadStart());
     try {
       const response = await userService.getActividades(
-        page,
-        itemsPerPage,
-        userParams,
-        likesParam
+        userId, 
+        page, 
+        itemsPerPage
       );
       const actividades = response.data;
       const pagination = JSON.parse(response.headers.pagination);
       dispatch(fetchActividadesSuccess(actividades, pagination));
     } catch (error) {
       dispatch(fetchActividadesFail(error));
+    }
+  };
+};
+
+export const deleteActividad = (userId, actividadId, user) => {
+  return async dispatch => {
+    dispatch(deleteUserPhotoStart());
+    try {
+      let userActividades = [];
+      userActividades = user.actividades;
+
+      await userService.deleteActividad(userId, actividadId);
+      userActividades.splice(userActividades.findIndex(p => p.id === actividadId), 1);
+      const newUser = { ...user };
+      newUser.actividades = userActividades;
+      dispatch(deleteUserActividadSuccess(newUser));
+    } catch (error) {
+      dispatch(deleteUserActividadFail(error));
     }
   };
 };

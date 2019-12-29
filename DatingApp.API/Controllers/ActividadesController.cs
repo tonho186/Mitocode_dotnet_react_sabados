@@ -17,18 +17,17 @@ using System.Collections.Generic;
 
 namespace DatingApp.API.Controllers
 {
-    [Route("api/users/{userid}/actividades")]
     [ApiController]
+    [Route("api/users/{userid}/actividades")]
     public class ActividadesController : ControllerBase
     {
         private readonly IDatingRepository _repository;
         private readonly IMapper _mapper;
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
         private Cloudinary _cloudinary;
-        private readonly UserManager<Actividad> _actividadManager;
 
-        public ActividadesController(IDatingRepository repository, IMapper mapper,
-         IOptions<CloudinarySettings> cloudinaryConfig)
+        public ActividadesController(IDatingRepository repository, IMapper mapper, 
+        IOptions<CloudinarySettings> cloudinaryConfig)
         {
             _repository = repository;
             _mapper = mapper;

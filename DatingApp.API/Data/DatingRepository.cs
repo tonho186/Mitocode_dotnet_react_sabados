@@ -137,7 +137,7 @@ namespace DatingApp.API.Data
 
         public async Task<PagedList<Actividad>> GetActividades(UserParams userParams)
         {
-            var actividades = await _context.Actividades.Where(a => a.userId != userParams.UserId);
+            var actividades = _context.Actividades.Where(a => a.UserId != userParams.UserId);
 
             return await PagedList<Actividad>.CreateAsync(actividades, userParams.PageNumber, userParams.PageSize);
         }

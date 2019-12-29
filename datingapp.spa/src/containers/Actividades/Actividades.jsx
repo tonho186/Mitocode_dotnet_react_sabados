@@ -5,15 +5,17 @@ import alertify from 'alertifyjs';
 import * as actions from '../../store/actions/actionsIndex';
 import ActividadCard from '../../components/Cards/ActividadCard/ActividadCard';
 import Pagination from '../../components/UI/Pagination';
-import classnames from 'classnames';
+import userService from '../../services/userService.js';
+import auth from '../../services/authService.js';
+
 class Actividades extends Component {
-  state = { currentPage: 1, pageSize: 4, likesParam: 'Likers' };
+  state = { actividades: [], currentPage: 1, pageSize: 4, likesParam: 'Likers' };
 
   componentDidMount() {
-    const { currentPage, pageSize, likesParam } = this.state;
-
+    const { currentPage, pageSize } = this.state;
+    const { decodedToken } = this.props;
     this.props
-      .onGetActividades(currentPage, pageSize, likesParam)
+      .onGetActividades(decodedToken.id, currentPage, pageSize)
       .then(() => {
         const { pagination } = this.props;
         this.setState({ currentPage: pagination.currentPage });
@@ -29,10 +31,10 @@ class Actividades extends Component {
 
   loadActividades = (page, likesParam) => {
     const { pageSize } = this.state;
-    this.props.onGetActividades(page, pageSize, likesParam).then(() => {
+    const { decodedToken } = this.props;
+    this.props.onGetActividades(decodedToken.id,page, pageSize).then(() => {
       this.setState({
-        currentPage: this.props.pagination.currentPage,
-        likesParam
+        currentPage: this.props.pagination.currentPage
       });
     });
     if (this.props.error) {
@@ -48,8 +50,32 @@ class Actividades extends Component {
     this.loadActividades(page, this.state.likesParam);
   };
 
-  handleDeleteActividad = user => {
-    alertify.warning('Are you sure you want to delete this message?');
+  handleDeleteActividad = actividadId => {
+  //  alertify.warning('Are you sure you want to delete this message?');
+    const { currentUser } = this.props;
+    const originalActividades = this.state.actividades;
+    const actividades = this.state.actividades;
+
+    const { unique_name: username } = auth.getDecodedToken();
+    alertify.confirm(
+      `Mr. ${username}`,
+      'Are you sure you want to delete this message?',
+      async () => {
+        actividades.splice(actividades.findIndex(p => p.id === actividadId), 1);
+        this.setState({ actividades });
+
+        await userService
+          .deleteActividad(currentUser.id, actividadId)
+          .then(() => {
+            alertify.warning('The activity was rejected');
+          })
+          .catch(error => {
+            alertify.warning(error);
+            this.setState({ actividades: originalActividades });
+          });
+      },
+      () => {}
+    );
   };
 
   handleEditActividad = id => {
@@ -102,6 +128,7 @@ class Actividades extends Component {
 const mapStateToProps = state => {
   return {
     users: state.user.users,
+    decodedToken: state.auth.decodedToken,
     currentUser: state.auth.currentUser,
     pagination: state.user.pagination,
     error: state.user.error
@@ -110,8 +137,8 @@ const mapStateToProps = state => {
 
 const mapDispacthToProps = dispatch => {
   return {
-    onGetActividades: (page, itemsPerPage, likesParam) =>
-      dispatch(actions.getActividades(page, itemsPerPage))
+    onGetActividades: (userId, page, itemsPerPage) =>
+      dispatch(actions.getActividades(userId, page, itemsPerPage))
   };
 };
 
