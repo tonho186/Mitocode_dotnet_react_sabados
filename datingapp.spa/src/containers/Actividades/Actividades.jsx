@@ -15,7 +15,7 @@ class Actividades extends Component {
     const { currentPage, pageSize } = this.state;
     const { decodedToken } = this.props;
     this.props
-      .onGetActividades(decodedToken.id, currentPage, pageSize)
+      .onGetActividades(currentPage, pageSize)
       .then(() => {
         const { pagination } = this.props;
         this.setState({ currentPage: pagination.currentPage });
@@ -32,7 +32,7 @@ class Actividades extends Component {
   loadActividades = (page, likesParam) => {
     const { pageSize } = this.state;
     const { decodedToken } = this.props;
-    this.props.onGetActividades(decodedToken.id,page, pageSize).then(() => {
+    this.props.onGetActividades(page, pageSize).then(() => {
       this.setState({
         currentPage: this.props.pagination.currentPage
       });
@@ -137,8 +137,8 @@ const mapStateToProps = state => {
 
 const mapDispacthToProps = dispatch => {
   return {
-    onGetActividades: (userId, page, itemsPerPage) =>
-      dispatch(actions.getActividades(userId, page, itemsPerPage))
+    onGetActividades: (page, itemsPerPage) =>
+      dispatch(actions.getActividades(page, itemsPerPage))
   };
 };
 

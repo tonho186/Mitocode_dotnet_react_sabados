@@ -105,7 +105,40 @@ namespace DatingApp.API.Controllers
             return BadRequest("Failed to like user");
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> GetActividades([FromQuery]UserParams userParams)
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var userFromRepo = await _repository.GetUser(currentUserId, true);
+
+            userParams.UserId = currentUserId;
+
+            var actividades = await _repository.GetActividades(userParams);
+
+            var actividadesToReturn = _mapper.Map<IEnumerable<ActividadForListDto>>(actividades);
+
+            Response.AddPagination(actividades.CurrentPage, actividades.PageSize, actividades.TotalCount, actividades.TotalPages);
+
+            return Ok(actividadesToReturn);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateActividad(int id, ActividadForUpdateDto actividadForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var actividadFromRepo = await _repository.GetActividad(id);
+
+            _mapper.Map(actividadForUpdateDto, actividadFromRepo);
+
+            if (await _repository.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating actividad {id} failed on save.");
+
+        }
 
     }
 }

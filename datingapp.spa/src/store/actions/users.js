@@ -365,11 +365,11 @@ export const getActividad = (userId, id) => {
   };
 };
 
-export const updateActividad = (userId, id, actividad) => {
+export const updateActividad = (id, actividad) => {
   return async dispatch => {
     dispatch(updateActividadStart());
     try {
-      await userService.updateActividad(userId, id, actividad);
+      await userService.updateActividad(id, actividad);
       dispatch(updateActividadSuccess(actividad));
     } catch (error) {
       if (error) {
@@ -381,13 +381,12 @@ export const updateActividad = (userId, id, actividad) => {
   };
 };
 
-export const getActividades = (userId, page, itemsPerPage) => {
+export const getActividades = (page, itemsPerPage) => {
   return async dispatch => {
     dispatch(fetchActividadesInit());
     dispatch(fetchActividadStart());
     try {
       const response = await userService.getActividades(
-        userId, 
         page, 
         itemsPerPage
       );

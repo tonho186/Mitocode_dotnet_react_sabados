@@ -56,7 +56,7 @@ export function sendLike(userId, recipientId) {
   return http.post(userUrl(userId) + '/like/' + recipientId, {});
 }
 
-export function getActividades(userId, page, itemsPerPage) {
+export function getActividades(page, itemsPerPage) {
   let params = new URLSearchParams();
 
   if (page && itemsPerPage) {
@@ -64,15 +64,15 @@ export function getActividades(userId, page, itemsPerPage) {
     params.append('pageSize', itemsPerPage);
   }
 
-  return http.get(userUrl(userId) + '/actividades', { params });
+  return http.get(apiEndpoint, { params });
 }
 
 export function getActividad(userId, id) {
-  return http.get(userUrl(userId) + '/actividades' + id);
+  return http.get(userUrl(userId) + '/actividades/' + id);
 }
 
-export function updateActividad(userId, id, actividad) {
-  return http.put(userUrl(userId) + '/actividades' + id, actividad);
+export function updateActividad(id, actividad) {
+  return http.put(userUrl(id), actividad);
 }
 
 export function deleteActividad(userId, id) {
